@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h2>Logged out</h2>
+
+<p>You have been logged out.</p>
+<button class="btn btn-primary"><a href="{% url 'login' %}">Login Here</a></button>
+<button class="btn bg-dark-subtle"><a href="{% url 'home' %}">Home</a></button>
+{% endblock %}

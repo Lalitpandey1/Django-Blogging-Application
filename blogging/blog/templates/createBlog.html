@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{% if form.instance.pk  %}
+Edit Blog
+{% else %}
+Create New Blog
+{% endif %}
+
+{% endblock %}
+
+{% block content %}
+<form method="post" enctype="multipart/form-data" class="form">
+    {% csrf_token %}
+    {{form.as_p}}
+    <div>
+        <button type="Submit" class="btn btn-danger">Submit</button>
+        <a class="btn btn-primary" href="{% url 'home' %}">Cancel</a>
+    </div>
+</form>
+{% endblock %}

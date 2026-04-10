@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block title %}{{username}}, Profile{% endblock title %}
+
+{% block content %}
+<h1>{{username}}'s Profile</h1>
+
+<h2>Blogs by {{username}}</h2>
+
+{% if all_blogs %}
+
+{% for blog in all_blogs %}
+<div class="container text-light mt-5 bg-white text-black">
+
+    <div class="card" style="width: 18rem;">
+        {% if blog.photo %}
+            <img src="{{blog.photo.url}}" class="card-img-top py-2 rounded-3" alt="{{blog.title}}">
+        {% else %}
+            <img src="{% static 'not_found.jpg' %}" class="card-img-top py-2 rounded-3" alt="{{blog.title}}">
+        {% endif %}
+    <div class="card-body">
+        <h5 class="card-title">{{blog.title}}</h5>
+        <p class="card-text">{{blog.content}}</p>
+        <a href="{% url "edit_blog" blog.id %}" class="btn btn-primary">edit</a>
+        <a href="{% url "blog_like_toggle" blog.id %}" class="btn btn-sm {% if request.user in blog.likes.all %}btn-danger{% else %}btn-outline-danger{% endif %}">
+        {{ blog.likes.count }} ❤️
+        </a>
+    </div>
+</div>
+{% endfor %}
+
+{% else %}
+    <p>{username} has not written any blogs yet.</p>
+</div>
+
+{% endif %}
+
+{% endblock content %}
+
