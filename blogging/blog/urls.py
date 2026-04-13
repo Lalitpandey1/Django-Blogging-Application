@@ -11,4 +11,5 @@ urlpatterns = [
     path('profile/<str:username>/', views.profile, name='profile'),
     path('<int:blog_id>/like/', views.liked_blog, name='blog_like_toggle'),
     path('<int:blog_id>/comments/', views.add_comment, name='add_comment')
+    
 ]
